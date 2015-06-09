@@ -1,0 +1,29 @@
+#INCLUDE <STDIO.H>
+#INCLUDE <STDLIB.H>
+
+INT MAIN(INT ARGC, CHAR *ARGV[])
+{
+    FILE *SPT, *TPT;
+    INT CH;
+    IF(ARGC < 3)
+    {
+        PRINTF("TOO LESS ARGUMENT.\N");
+        EXIT(EXIT_FAILURE);
+    }
+    IF((SPT = FOPEN(ARGV[1], "RB")) == NULL)
+    {
+        PRINTF("FILE %S FAILED TO BE OPENED.\N", ARGV[1]);
+        EXIT(EXIT_FAILURE);
+    }
+    IF((TPT = FOPEN(ARGV[2], "WB")) == NULL)
+    {
+        PRINTF("FAIL TO OPEN FILE %S.\N", ARGV[2]);
+        EXIT(EXIT_FAILURE);
+    }
+    WHILE((CH = GETC(SPT)) != EOF)
+        PUTC(CH, TPT);
+    FCLOSE(SPT);
+    FCLOSE(TPT);
+
+    RETURN 0;
+}
